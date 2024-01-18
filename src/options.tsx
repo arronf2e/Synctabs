@@ -5,7 +5,13 @@ import { sendToBackground } from "@plasmohq/messaging"
 import { Storage } from "@plasmohq/storage"
 import { useStorage } from "@plasmohq/storage/hook"
 
-import { supabase } from "~core/supabase"
+import { supabase } from "~/core/supabase"
+
+// 右击扩展打开的选项设置页面
+// 在 Chrome 扩展程序中，options.html 页面用于提供扩展程序的选项设置界面。用户可以通过打开该页面来配置和更改扩展程序的各种选项和参数。
+// options.html 页面通常用于展示一个表单或其他交互元素，让用户输入和保存他们的偏好设置。这些设置可以影响扩展程序的行为、外观和功能。
+// 在 options.html 页面中，你可以使用标准的 HTML、CSS 和 JavaScript 来构建用户界面和处理用户输入。你可以为每个选项添加适当的输入字段、复选框、下拉列表等，以便用户设置他们的首选项。
+// 当用户保存选项设置后，你可以使用 Chrome 扩展程序的 chrome.storage API 来将这些设置保存到扩展程序的本地存储中。
 
 function IndexOptions() {
   const [user, setUser] = useStorage<User>({
