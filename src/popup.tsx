@@ -17,6 +17,7 @@ import useChromeWindow from "~hooks/useChromeWindow"
 
 function IndexPopup() {
   const [currentWindow, setCurrentWindow] = useState(0)
+  const [activeWindow, setActiveWindow] = useState(0)
   const [groups] = useChromeTabGroup(currentWindow)
   const [tabs] = useChromeTab(currentWindow)
   const [windows] = useChromeWindow()
@@ -25,6 +26,9 @@ function IndexPopup() {
   const getCurrentWin = async () => {
     const id = await getChromeCurrentWin()
     setCurrentWindow(id)
+    if(!activeWindow) {
+      setActiveWindow(id)
+    }
   }
 
   const handleTabChange = (windowId) => {
@@ -90,7 +94,7 @@ function IndexPopup() {
                 return null
               }
               return (
-                <PopupGroupCard windowId={currentWindow} key={group.id} group={group} tabs={showTabs} />
+                <PopupGroupCard activeWindow={activeWindow} key={group.id} group={group} tabs={showTabs} />
               )
             })}
           </Grid>

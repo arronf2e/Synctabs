@@ -33,6 +33,7 @@ This should create a production bundle for your extension, ready to be zipped an
 The easiest way to deploy your Plasmo extension is to use the built-in [bpp](https://bpp.browser.market) GitHub action. Prior to using this action however, make sure to build your extension and upload the first version to the store to establish the basic credentials. Then, simply follow [this setup instruction](https://docs.plasmo.com/framework/workflows/submit) and you should be on your way for automated submission!
 
 - [ x ] 模糊搜索
+- [ x ] 多 window 的支持
 - 组的打开与关闭
 - 组状态的显示
 - 关闭标签
@@ -40,4 +41,3 @@ The easiest way to deploy your Plasmo extension is to use the built-in [bpp](htt
 - 登录
 - 同步
 - 对tab添加任务提醒，notifacation
-- 多 window 的支持

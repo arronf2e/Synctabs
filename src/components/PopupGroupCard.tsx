@@ -13,18 +13,27 @@ import {
 interface PopupGroupCardProps {
   group: chrome.tabGroups.TabGroup
   tabs: chrome.tabs.Tab[]
-  windowId: number
+  activeWindow: number
 }
 
 export default function PopupGroupCard({
   group,
   tabs,
-  windowId
+  activeWindow
 }: PopupGroupCardProps) {
-  const handleChooseTab = (tab: chrome.tabs.Tab) => () => {
-    chrome.windows.update(windowId, { focused: true }, (window) => {
-      chrome.tabs.update(tab.id, { highlighted: true })
-    })
+  const handleChooseTab = (tab: chrome.tabs.Tab) => async () => {
+    if (activeWindow !== tab.windowId) {
+      chrome.windows.update(tab.windowId, { focused: true }, function() {
+        chrome.tabs.update(tab.id, { active: true })
+      })
+      return
+    }
+    // current tab is active, close popup
+    if (tab.active) {
+      window.close()
+      return
+    }
+    chrome.tabs.update(tab.id, { active: true })
   }
 
   return (
