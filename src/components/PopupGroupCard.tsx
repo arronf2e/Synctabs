@@ -13,11 +13,18 @@ import {
 interface PopupGroupCardProps {
   group: chrome.tabGroups.TabGroup
   tabs: chrome.tabs.Tab[]
+  windowId: number
 }
 
-export default function PopupGroupCard({ group, tabs }: PopupGroupCardProps) {
+export default function PopupGroupCard({
+  group,
+  tabs,
+  windowId
+}: PopupGroupCardProps) {
   const handleChooseTab = (tab: chrome.tabs.Tab) => () => {
-    chrome.tabs.update(tab.id, { highlighted: true })
+    chrome.windows.update(windowId, { focused: true }, (window) => {
+      chrome.tabs.update(tab.id, { highlighted: true })
+    })
   }
 
   return (

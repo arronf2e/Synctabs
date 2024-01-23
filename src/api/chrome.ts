@@ -1,4 +1,4 @@
-// 获取所有tab
+// getAllTab under window
 export const getChromeTabs = (windowId?: number): Promise<chrome.tabs.Tab[]> => {
   return new Promise((resolve, reject) => {
     chrome.tabs.query({windowId}, tabs => {
@@ -7,7 +7,7 @@ export const getChromeTabs = (windowId?: number): Promise<chrome.tabs.Tab[]> => 
   })
 }
 
-// 获取所有tabGroup
+// get tabGroup under window
 export const getChromeTabGroups = (windowId?: number): Promise<chrome.tabGroups.TabGroup[]> => {
   return new Promise((resolve, reject) => {
     chrome.tabGroups.query({windowId}, tabGroups => {
@@ -16,7 +16,7 @@ export const getChromeTabGroups = (windowId?: number): Promise<chrome.tabGroups.
   })
 }
 
-// 获取当前窗口
+// get current active window
 export const getChromeCurrentWin = (): Promise<number> => {
   return new Promise((resolve, reject) => {
     chrome.windows.getCurrent(win => {
@@ -25,3 +25,11 @@ export const getChromeCurrentWin = (): Promise<number> => {
   })
 }
 
+// get all windows
+export const getChromeWindows = (): Promise<chrome.windows.Window[]> => {
+  return new Promise((resolve, reject) => {
+    chrome.windows.getAll(wins => {
+      resolve(wins)
+    })
+  })
+}

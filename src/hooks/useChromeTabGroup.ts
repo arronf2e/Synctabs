@@ -1,18 +1,15 @@
 import { useEffect, useState } from 'react';
-import { getChromeCurrentWin, getChromeTabGroups } from '~api/chrome';
+import { getChromeTabGroups } from '~api/chrome';
 
-export default function useChromeTabGroup() {
-  const [groups, setGroups] = useState([] as chrome.tabGroups.TabGroup[])
-
+export default function useChromeTabGroup(windowId) {
+  const [groups, setGroups] = useState<chrome.tabGroups.TabGroup[]>([])
   const initGroups = async () => {
-    const windowId = await getChromeCurrentWin()
     const tabGroups = await getChromeTabGroups(windowId)
     setGroups(tabGroups)
   }
-
   useEffect(() => {
     initGroups();
-  }, [])
+  }, [windowId])
 
   return [groups]
 }

@@ -11,7 +11,7 @@ import "~style.css"
 // ]
 // 文档：https://developer.chrome.com/docs/extensions/reference/api/sidePanel?hl=zh-cn
 function IndexSidePanel() {
-  const [tabs, setTabs] = useState([] as chrome.tabs.Tab[])
+  const [tabs, setTabs] = useState<chrome.tabs.Tab[]>([])
 
   useEffect(() => {
     // 获取所有标题页
