@@ -1,0 +1,12 @@
+@config "../config/tailwind.config.js";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.popup-container {
+  width: 800px;
+  height: 600px;
+  padding: 15px;
+  overflow-x: hidden;
+}
